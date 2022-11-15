@@ -31,12 +31,14 @@ npx cap sync
 ### init(...)
 
 ```typescript
-init(options: { clientToken: string; applicationID: string; service: string; }) => Promise<void>
+init(clientToken: string, applicationId: string, service: string) => Promise<void>
 ```
 
-| Param         | Type                                                                          |
-| ------------- | ----------------------------------------------------------------------------- |
-| **`options`** | <code>{ clientToken: string; applicationID: string; service: string; }</code> |
+| Param               | Type                |
+| ------------------- | ------------------- |
+| **`clientToken`**   | <code>string</code> |
+| **`applicationId`** | <code>string</code> |
+| **`service`**       | <code>string</code> |
 
 --------------------
 
@@ -44,12 +46,15 @@ init(options: { clientToken: string; applicationID: string; service: string; }) 
 ### setUserInfo(...)
 
 ```typescript
-setUserInfo(options: { id?: string | undefined; name?: string | undefined; email?: string | undefined; extraInfo?: { [key: string]: string; } | undefined; }) => Promise<void>
+setUserInfo(id?: string | undefined, name?: string | undefined, email?: string | undefined, extraInfo?: { [key: string]: string; } | undefined) => Promise<void>
 ```
 
-| Param         | Type                                                                                                 |
-| ------------- | ---------------------------------------------------------------------------------------------------- |
-| **`options`** | <code>{ id?: string; name?: string; email?: string; extraInfo?: { [key: string]: string; }; }</code> |
+| Param           | Type                                    |
+| --------------- | --------------------------------------- |
+| **`id`**        | <code>string</code>                     |
+| **`name`**      | <code>string</code>                     |
+| **`email`**     | <code>string</code>                     |
+| **`extraInfo`** | <code>{ [key: string]: string; }</code> |
 
 --------------------
 
@@ -57,12 +62,12 @@ setUserInfo(options: { id?: string | undefined; name?: string | undefined; email
 ### addUserExtraInfo(...)
 
 ```typescript
-addUserExtraInfo(options: { extraInfo: { [key: string]: string; }; }) => Promise<void>
+addUserExtraInfo(extraInfo: { [key: string]: string; }) => Promise<void>
 ```
 
-| Param         | Type                                                    |
-| ------------- | ------------------------------------------------------- |
-| **`options`** | <code>{ extraInfo: { [key: string]: string; }; }</code> |
+| Param           | Type                                    |
+| --------------- | --------------------------------------- |
+| **`extraInfo`** | <code>{ [key: string]: string; }</code> |
 
 --------------------
 
@@ -70,12 +75,14 @@ addUserExtraInfo(options: { extraInfo: { [key: string]: string; }; }) => Promise
 ### addUserAction(...)
 
 ```typescript
-addUserAction(options: { type: RUMUserActionType; name: string; attributes: { [key: string]: string; }; }) => Promise<void>
+addUserAction(type: RUMUserActionType, name: string, attributes: { [key: string]: string; }) => Promise<void>
 ```
 
-| Param         | Type                                                                                                                             |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| **`options`** | <code>{ type: <a href="#rumuseractiontype">RUMUserActionType</a>; name: string; attributes: { [key: string]: string; }; }</code> |
+| Param            | Type                                                            |
+| ---------------- | --------------------------------------------------------------- |
+| **`type`**       | <code><a href="#rumuseractiontype">RUMUserActionType</a></code> |
+| **`name`**       | <code>string</code>                                             |
+| **`attributes`** | <code>{ [key: string]: string; }</code>                         |
 
 --------------------
 
@@ -83,12 +90,13 @@ addUserAction(options: { type: RUMUserActionType; name: string; attributes: { [k
 ### addAttribute(...)
 
 ```typescript
-addAttribute(options: { key: string; value: string; }) => Promise<void>
+addAttribute(key: string, value: string) => Promise<void>
 ```
 
-| Param         | Type                                         |
-| ------------- | -------------------------------------------- |
-| **`options`** | <code>{ key: string; value: string; }</code> |
+| Param       | Type                |
+| ----------- | ------------------- |
+| **`key`**   | <code>string</code> |
+| **`value`** | <code>string</code> |
 
 --------------------
 
@@ -96,12 +104,12 @@ addAttribute(options: { key: string; value: string; }) => Promise<void>
 ### removeAttribute(...)
 
 ```typescript
-removeAttribute(options: { key: string; }) => Promise<void>
+removeAttribute(key: string) => Promise<void>
 ```
 
-| Param         | Type                          |
-| ------------- | ----------------------------- |
-| **`options`** | <code>{ key: string; }</code> |
+| Param     | Type                |
+| --------- | ------------------- |
+| **`key`** | <code>string</code> |
 
 --------------------
 
@@ -109,12 +117,13 @@ removeAttribute(options: { key: string; }) => Promise<void>
 ### addError(...)
 
 ```typescript
-addError(options: { error: unknown; context?: Context; }) => Promise<void>
+addError(error: unknown, context?: Context | undefined) => Promise<void>
 ```
 
-| Param         | Type                                                                       |
-| ------------- | -------------------------------------------------------------------------- |
-| **`options`** | <code>{ error: unknown; context?: <a href="#context">Context</a>; }</code> |
+| Param         | Type                                        |
+| ------------- | ------------------------------------------- |
+| **`error`**   | <code>unknown</code>                        |
+| **`context`** | <code><a href="#context">Context</a></code> |
 
 --------------------
 

@@ -2,42 +2,34 @@
 import type { Context } from '@datadog/browser-core';
 
 export interface DatadogPlugin {
-  init(options: {
-    clientToken: string;
-    applicationID: string;
-    service: string;
-  }): Promise<void>;
-  setUserInfo(options: {
-    id?: string;
-    name?: string;
-    email?: string;
+  init(
+    clientToken: string,
+    applicationId: string,
+    service: string,
+  ): Promise<void>;
+  setUserInfo(
+    id?: string,
+    name?: string,
+    email?: string,
     extraInfo?: {
       [key: string]: string
-    };
-  }): Promise<void>;
-  addUserExtraInfo(options: {
+    },
+  ): Promise<void>;
+  addUserExtraInfo(
     extraInfo: {
       [key: string]: string
-    };
-  }): Promise<void>;
-  addUserAction(options: {
-    type: RUMUserActionType;
-    name: string;
+    },
+  ): Promise<void>;
+  addUserAction(
+    type: RUMUserActionType,
+    name: string,
     attributes: {
       [key: string]: string;
-    };
-  }): Promise<void>;
-  addAttribute(options: {
-    key: string;
-    value: string;
-  }): Promise<void>;
-  removeAttribute(options: {
-    key: string;
-  }): Promise<void>;
-  addError(options: {
-    error: unknown;
-    context?: Context;
-  }): Promise<void>;
+    },
+  ): Promise<void>;
+  addAttribute(key: string, value: string): Promise<void>;
+  removeAttribute(key: string): Promise<void>;
+  addError(error: unknown, context?: Context): Promise<void>;
 }
 
 declare module '@capacitor/cli' {

@@ -5,69 +5,64 @@ import { datadogLogs } from '@datadog/browser-logs';
 import type { DatadogPlugin, RUMUserActionType } from './definitions';
 
 export class DatadogWeb extends WebPlugin implements DatadogPlugin {
-  async init(options: {
-    clientToken: string;
-    applicationID: string;
-    service: string;
-  }): Promise<void> {
+  async init(
+    clientToken: string,
+    applicationId: string,
+    service: string,
+  ): Promise<void> {
     datadogRum.init({
-      applicationId: options.applicationID,
-      clientToken: options.clientToken,
-      site: 'datadoghq.eu',
-      service: options.service,
+      applicationId,
+      clientToken,
+      site: 'datadoghq.com',
+      service,
       trackInteractions: true,
     });
 
     datadogLogs.init({
-      clientToken: options.clientToken,
-      site: 'datadoghq.eu',
+      clientToken,
+      site: 'datadoghq.com',
       forwardErrorsToLogs: true,
     });
   }
 
-  async setUserInfo(options: {
-    id?: string;
-    name?: string;
-    email?: string;
+  async setUserInfo(
+    id?: string,
+    name?: string,
+    email?: string,
     extraInfo?: { [key: string]: string }
-  }): Promise<void> {
+  ): Promise<void> {
     datadogRum.setUser({
-      id: options.id,
-      name: options.name,
-      email: options.email,
-      extraInfo: options.extraInfo,
+      id,
+      name,
+      email,
+      extraInfo,
     });
   }
 
-  async addUserExtraInfo(options: {
-    extraInfo: { [key: string]: string }
-  }): Promise<void> {
-    const { extraInfo } = options;
+  async addUserExtraInfo(extraInfo: { [key: string]: string }): Promise<void> {
     datadogRum.setUserProperty('extraInfo', extraInfo);
   }
 
-  async addUserAction(options: {
-    type: RUMUserActionType;
-    name: string;
+  async addUserAction(
+    type: RUMUserActionType,
+    name: string,
     attributes: { [key: string]: string }
-  }): Promise<void> {
-    const { type, name, attributes } = options;
+  ): Promise<void> {
     datadogRum.addAction(name, {
       ...attributes,
       type,
     });
   }
 
-  async addAttribute(options: { key: string; value: string }): Promise<void> {
-    datadogRum.setGlobalContextProperty(options.key, options.value);
+  async addAttribute(key: string, value: string): Promise<void> {
+    datadogRum.setGlobalContextProperty(key, value);
   }
 
-  async removeAttribute(options: { key: string; }): Promise<void> {
-    datadogRum.removeGlobalContextProperty(options.key);
+  async removeAttribute(key: string): Promise<void> {
+    datadogRum.removeGlobalContextProperty(key);
   }
 
-  async addError(options: { error: unknown; context?: any }): Promise<void> {
-    const { error, context } = options;
+  async addError(error: unknown, context?: any): Promise<void> {
     datadogRum.addError(error, context);
   }
 }
